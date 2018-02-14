@@ -55,17 +55,10 @@ function getCurrentTabUrl(callback) {
 // to a document's origin. Also, using chrome.storage.sync instead of
 // chrome.storage.local allows the extension data to be synced across multiple
 // user devices.
-document.addEventListener('DOMContentLoaded', () => {
-    getCurrentTabUrl((tab, url) => {
-        let movie_id = url.match(/\d+(?=\/)/)[0];
-        let button = document.querySelector('#go_next');
-        button.addEventListener('click', () => {
-            let next_movie_id = parseInt(movie_id) + 2 + '';
-            let new_url = url.replace(/\d+(?=\/)/, next_movie_id);
-            // alert(new_url);
-            // text.value = next_movie_id;
-            //Update the url here.
-            chrome.tabs.update(tab.id, { url: new_url });
-        });
-    });
+getCurrentTabUrl((tab, url) => {
+    let movie_id = url.match(/\d+(?=\/)/)[0];
+    let next_movie_id = parseInt(movie_id) + 2 + '';
+    let new_url = url.replace(/\d+(?=\/)/, next_movie_id);
+    //Update the url here.
+    chrome.tabs.update(tab.id, { url: new_url });
 });
