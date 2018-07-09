@@ -57,7 +57,7 @@ function getCurrentTabUrl(callback) {
 // user devices.
 getCurrentTabUrl((tab, url) => {
     let movie_id = url.match(/\d+(?=\/)/)[0];
-    let next_movie_id = parseInt(movie_id) + 2 + '';
+    let next_movie_id = parseInt(movie_id) + 1 + '';
     let new_url = url.replace(/\d+(?=\/)/, next_movie_id);
     //Update the url here.
     chrome.tabs.update(tab.id, { url: new_url });
